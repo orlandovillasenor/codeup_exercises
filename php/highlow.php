@@ -20,7 +20,15 @@ while ($user_number != $rand_number) {
 	$guess_count++;
 }
 
-echo "GOOD GUESS! It took you $guess_count guesses. You should play the lottery tonight.";
+if ($guess_count == 1) {
+	echo "Amazing! You got it on the first try. You should play the lottery tonight";
+} elseif ($guess_count > 1 && $guess_count <= 5) {
+	echo "Good Guess! It only took you $guess_count guesses. That's not too shabby.";
+} else {
+	echo "GOOD GUESS! It took you $guess_count guesses. You need to work on your psychic abilities though.";
+}
+
+
 
 
 exit(0);
