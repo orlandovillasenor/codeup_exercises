@@ -20,6 +20,11 @@ $increment = fgets(STDIN);
 
 $increment = trim($increment);
 
+if (!is_numeric($start_number) || !is_numeric($end_number)) {
+	echo "Error, your inputs need to be numbers ";
+	exit(0);
+}
+
 if (!is_numeric($increment)) {
 	$increment = 1;
 }
