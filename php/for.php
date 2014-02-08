@@ -20,6 +20,10 @@ $increment = fgets(STDIN);
 
 $increment = trim($increment);
 
+if (!is_numeric($increment)) {
+	$increment = 1;
+}
+
 //display all numbers from start to finish using for loop
 
 for ($i = $start_number ; $i <= $end_number ; $i += $increment) { 
