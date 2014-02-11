@@ -24,6 +24,10 @@ function divide($a, $b) {
 
 divide(20, 10);
 
+function modulus($a, $b){
+	echo $a % $b . "\n";
+}
+
 
 
 ?>
