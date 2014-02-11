@@ -1,10 +1,15 @@
 <?php
 
+function error(){
+	echo "Error, arg 1 and arg 2 must both be numbers\n";
+}
+	
 function add($a, $b) {
 	if (is_numeric($a) && is_numeric($b)) {
 		echo $a + $b . "\n";
 	} else {
-		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
+		echo error();
+		//echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -14,7 +19,8 @@ function subtract($a, $b) {
     if (is_numeric($a) && is_numeric($b)) {
 		echo $a - $b . "\n";
 	} else {
-		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
+		echo error();
+		//echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -24,7 +30,8 @@ function multiply($a, $b) {
     if (is_numeric($a) && is_numeric($b)) {
 		echo $a * $b . "\n";
 	} else {
-		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
+		echo error();
+		//echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -38,7 +45,8 @@ function divide($a, $b) {
     elseif (is_numeric($a) && is_numeric($b)) {
 		echo $a / $b . "\n";
 	} else {
-		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
+		echo error();
+		//echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -48,10 +56,12 @@ function modulus($a, $b){
 	if (is_numeric($a) && is_numeric($b)) {
 		echo $a % $b . "\n";
 	} else {
-		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
+		echo error();
+		//echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
 modulus(5, 4);
+
 
 ?>
