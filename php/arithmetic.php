@@ -31,14 +31,18 @@ function multiply($a, $b) {
 multiply(5, 8);
 
 function divide($a, $b) {
-    if (is_numeric($a) && is_numeric($b)) {
+    if ($b == 0) {
+    	echo "Error, \$b can not equal 0\n";
+    }
+
+    elseif (is_numeric($a) && is_numeric($b)) {
 		echo $a / $b . "\n";
 	} else {
 		echo "Error, all inputs must be numbera\n";
 	}
 }
 
-divide(20, 10);
+divide(20, 0);
 
 function modulus($a, $b){
 	if (is_numeric($a) && is_numeric($b)) {
