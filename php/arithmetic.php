@@ -39,11 +39,11 @@ function divide($a, $b) {
     	echo "Error, arg \$b can not equal 0 because a number can not be divided by 0\n";
     } elseif (params_are_valid($a, $b)) {
 	//if (is_numeric($a) && is_numeric($b)) {
-		return $a * $b . "\n";
+		return $a / $b . "\n";
 	}	
 }
 
-echo divide(20, 5);
+echo divide(20, 10);
 
 function modulus($a, $b) {
 	params_are_valid($a, $b);
