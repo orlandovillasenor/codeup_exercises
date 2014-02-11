@@ -13,7 +13,7 @@ function add($a, $b) {
 	}
 }
 
-add(10, 'dog');
+add(10, 20);
 
 function subtract($a, $b) {
     if (is_numeric($a) && is_numeric($b)) {
@@ -50,7 +50,7 @@ function divide($a, $b) {
 	}
 }
 
-divide(20, 0);
+divide(20, 5);
 
 function modulus($a, $b){
 	if (is_numeric($a) && is_numeric($b)) {
