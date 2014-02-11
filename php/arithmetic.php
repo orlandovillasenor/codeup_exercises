@@ -4,17 +4,17 @@ function add($a, $b) {
 	if (is_numeric($a) && is_numeric($b)) {
 		echo $a + $b . "\n";
 	} else {
-		echo "Error, all inputs must be numbera\n";
+		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
-add(10, 2);
+add(10, 'dog');
 
 function subtract($a, $b) {
     if (is_numeric($a) && is_numeric($b)) {
 		echo $a - $b . "\n";
 	} else {
-		echo "Error, all inputs must be numbera\n";
+		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -24,21 +24,21 @@ function multiply($a, $b) {
     if (is_numeric($a) && is_numeric($b)) {
 		echo $a * $b . "\n";
 	} else {
-		echo "Error, all inputs must be numbera\n";
+		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
-multiply(5, 8);
+multiply(5, 4);
 
 function divide($a, $b) {
     if ($b == 0) {
-    	echo "Error, \$b can not equal 0\n";
+    	echo "Error, arg \$b can not equal 0 because a number can not be divided by 0\n";
     }
 
     elseif (is_numeric($a) && is_numeric($b)) {
 		echo $a / $b . "\n";
 	} else {
-		echo "Error, all inputs must be numbera\n";
+		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
@@ -48,7 +48,7 @@ function modulus($a, $b){
 	if (is_numeric($a) && is_numeric($b)) {
 		echo $a % $b . "\n";
 	} else {
-		echo "Error, all inputs must be numbera\n";
+		echo "Error, arg '{$a}' and arg '{$b}' must both be numbers\n";
 	}
 }
 
