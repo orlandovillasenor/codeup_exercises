@@ -18,6 +18,8 @@ check_value($nothing);
 
 // TEST: If var $nothing is set, display '$nothing is SET'
 
+unset($nothing);
+
 if (isset($nothing)) {
 	echo "\$nothing is SET" . PHP_EOL;
 }
@@ -30,8 +32,8 @@ if (empty($nothing)) {
 
 // TEST: If var $something is set, display '$something is SET'
 
-if (empty($something)) {
-	echo "\$something is EMPTY" . PHP_EOL;
+if (isset($something)) {
+	echo "\$something is SET" . PHP_EOL;
 }
 
 // Serialize the array $array, and output the results
