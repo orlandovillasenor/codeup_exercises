@@ -30,8 +30,8 @@ if (empty($nothing)) {
 
 // TEST: If var $something is set, display '$something is SET'
 
-if (isset($something)) {
-	echo "\$something is SET" . PHP_EOL;
+if (empty($something)) {
+	echo "\$something is EMPTY" . PHP_EOL;
 }
 
 // Serialize the array $array, and output the results
