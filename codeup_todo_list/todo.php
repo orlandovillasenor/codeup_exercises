@@ -13,7 +13,7 @@ function list_items($list)
         $string .= "[$key] ". $item . PHP_EOL;
         
     }
-    //return "[{$key}] {$item}" . PHP_EOL;
+
     // Should be listed [KEY] Value like this:
     return $string;
     // [1] TODO item 1
@@ -23,13 +23,16 @@ function list_items($list)
 
 //echo list_items($items);
 
+//create function called sort_menu
+function sort_menu(){
+
+}
+
+
 
 
 // Get STDIN, strip whitespace and newlines,
-
 // and convert to uppercase if $upper is true
-
-
 function get_input($upper = FALSE) 
 {
     if ($upper == TRUE) {
@@ -49,7 +52,9 @@ do {
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort item, (Q)uit : ';
+
+    //add (S)ort option to menu
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -69,7 +74,11 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key - 1]);
+    } elseif ($input == 'S') {
+        $items[] = sort_menu();
     }
+
+
 // Exit when input is (Q)uit
 } while ($input != 'Q');
 
