@@ -33,9 +33,9 @@ function list_items($list)
 
 // Get STDIN, strip whitespace and newlines,
 // and convert to uppercase if $upper is true
-function get_input($upper = FALSE) 
+function get_input($need_upper = FALSE) 
 {
-    if ($upper == TRUE) {
+    if ($need_upper == TRUE) {
       return strtoupper(trim(fgets(STDIN)));       
     } else {
         return trim(fgets(STDIN));
@@ -64,9 +64,22 @@ do {
     // Check for actionable input
     if ($input == 'N') {
         // Ask for entry
-        echo 'Enter item: ';
+        echo "Add to (B)eginning or (E)nd of your list? ";
+        $add_where = get_input(TRUE);
+        
+        if ($add_where == 'B') {
+            echo 'Enter item: ';
+            $new_item = get_input();
+            array_unshift($items, $new_item);
+        } else {
+            echo 'Enter item: ';
+            $new_item = get_input();
+            array_push($items, $new_item);
+        }
+
+        //echo 'Enter item: ';
         // Add entry to list array
-        $items[] = get_input();
+        //$items[] = get_input();
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
@@ -79,15 +92,20 @@ do {
         sort($items);
     } elseif ($input == 'S') {
         echo "(A)-Z or (Z)-A? ";
-        $sort_order = strtoupper(trim(fgets(STDIN)));
+        $sort_order = get_input(TRUE);
         if ($sort_order == 'A') {
             sort($items);
         } elseif ($sort_order == 'Z'){
             rsort($items);
         }
         
-        
+    } elseif ($input == 'F') {
+        array_shift($items);
+    
+    } elseif ($input == 'L') {
+        array_pop($items);
     }
+
 
 
 // Exit when input is (Q)uit
