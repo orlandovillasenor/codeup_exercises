@@ -24,9 +24,9 @@ function list_items($list)
 //echo list_items($items);
 
 //create function called sort_menu
-function sort_menu(){
+//function sort_menu(){
 
-}
+//}
 
 
 
@@ -48,13 +48,14 @@ function get_input($upper = FALSE)
 
 // The loop!
 do {
+    
+
     // Echo the list produced by the function
     echo list_items($items);
 
     // Show the menu options
     echo '(N)ew item, (R)emove item, (S)ort item, (Q)uit : ';
 
-    //add (S)ort option to menu
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
@@ -74,8 +75,18 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key - 1]);
+        // Takes $key back to [1] but sorts list alphabeticaly
+        sort($items);
     } elseif ($input == 'S') {
-        $items[] = sort_menu();
+        echo "(A)-Z or (Z)-A? ";
+        $sort_order = strtoupper(trim(fgets(STDIN)));
+        if ($sort_order == 'A') {
+            sort($items);
+        } elseif ($sort_order == 'Z'){
+            rsort($items);
+        }
+        
+        
     }
 
 
