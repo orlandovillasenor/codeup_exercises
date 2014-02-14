@@ -11,75 +11,48 @@ function list_items($list)
     foreach ($list as $key => $item) {
         $key++;
         $string .= "[$key] ". $item . PHP_EOL;
-        
+    
     }
-
-    // Should be listed [KEY] Value like this:
+    
     return $string;
-    // [1] TODO item 1
-    // [2] TODO item 2 - blah
-    // DO NOT USE ECHO, USE RETURN
 }
-
-//echo list_items($items);
-
-//create function called sort_menu
-//function sort_menu(){
-
-//}
-
-
-
-
-// Get STDIN, strip whitespace and newlines,
-// and convert to uppercase if $upper is true
-function get_input($need_upper = FALSE) 
-{
+        
+function get_input($need_upper = FALSE){ 
     if ($need_upper == TRUE) {
       return strtoupper(trim(fgets(STDIN)));       
     } else {
         return trim(fgets(STDIN));
-    }
-    
+    }  
 }
 
+function open_file($filename){
+    $handle = fopen($filename, "r");
+    $contents = fread($handle, filesize($filename));
+    $contents_array = explode("\n", $contents);
+    return $contents_array;
+    fclose($handle);
+}
 
-
-
-// The loop!
 do {
-    
-
-    // Echo the list produced by the function
     echo list_items($items);
 
-    // Show the menu options
-    echo '(N)ew item, (R)emove item, (S)ort item, (Q)uit : ';
+    echo '(N)ew item, (R)emove item, (S)ort item, File (M)enu, (Q)uit : ';
 
-
-    // Get the input from user
-    // Use trim() to remove whitespace and newlines
     $input = get_input(TRUE);
 
-    // Check for actionable input
     if ($input == 'N') {
         // Ask for entry
         echo "Add to (B)eginning or (E)nd of your list? ";
         $add_where = get_input(TRUE);
+        echo 'Enter item: ';
+        $add_item = get_input();
         
         if ($add_where == 'B') {
-            echo 'Enter item: ';
-            $new_item = get_input();
-            array_unshift($items, $new_item);
+            array_unshift($items, $add_item);
         } else {
-            echo 'Enter item: ';
-            $new_item = get_input();
-            array_push($items, $new_item);
+            array_push($items, $add_item);
         }
-
-        //echo 'Enter item: ';
-        // Add entry to list array
-        //$items[] = get_input();
+    
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
@@ -89,16 +62,30 @@ do {
         // Remove from array
         unset($items[$key - 1]);
         // Takes $key back to [1] but sorts list alphabeticaly
-        sort($items);
+        $items = array_values($items);
+        
     } elseif ($input == 'S') {
         echo "(A)-Z or (Z)-A? ";
         $sort_order = get_input(TRUE);
+        
         if ($sort_order == 'A') {
             sort($items);
         } elseif ($sort_order == 'Z'){
             rsort($items);
         }
+    
+    } elseif ($input == 'M') {
+        echo "(O)pen File: ";
+        get_input();
+        echo "Enter file path to open: ";
+        $file_path = get_input(FALSE);
+        $new_items = open_file($file_path);
         
+        foreach ($new_items as $value) {
+            $first_item = array_shift($new_items);
+            array_push($items, $first_item);
+        }
+    
     } elseif ($input == 'F') {
         array_shift($items);
     
@@ -106,13 +93,18 @@ do {
         array_pop($items);
     }
 
-
-
-// Exit when input is (Q)uit
 } while ($input != 'Q');
 
-// Say Goodbye!
 echo "Goodbye!\n";
 
-// Exit with 0 errors
 exit(0);
+
+
+        
+        
+
+
+    
+
+
+
