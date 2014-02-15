@@ -1,9 +1,8 @@
 <?php
 
-// Create array to hold list of todo items
+
 $items = array();
 
-// List array items formatted for CLI
 function list_items($list)
 {
     // Return string of list items separated by newlines.
@@ -33,6 +32,14 @@ function open_file($filename){
     fclose($handle);
 }
 
+function save_file($filename, $array){
+    $handle = fopen($filename, 'w');
+    $string = implode("\n", $array);
+    return fwrite($handle, $string);
+    fclose($handle);
+}
+
+
 do {
     echo list_items($items);
 
@@ -41,7 +48,6 @@ do {
     $input = get_input(TRUE);
 
     if ($input == 'N') {
-        // Ask for entry
         echo "Add to (B)eginning or (E)nd of your list? ";
         $add_where = get_input(TRUE);
         echo 'Enter item: ';
@@ -56,12 +62,8 @@ do {
     } elseif ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
-        // Get array key
-
         $key = get_input();
-        // Remove from array
         unset($items[$key - 1]);
-        // Takes $key back to [1] but sorts list alphabeticaly
         $items = array_values($items);
         
     } elseif ($input == 'S') {
@@ -75,17 +77,38 @@ do {
         }
     
     } elseif ($input == 'M') {
-        echo "(O)pen File: ";
-        get_input();
-        echo "Enter file path to open: ";
-        $file_path = get_input(FALSE);
-        $new_items = open_file($file_path);
+        echo "(O)pen File, (S)ave File : ";
+        $file_menu = get_input(TRUE);
         
-        foreach ($new_items as $value) {
-            $first_item = array_shift($new_items);
-            array_push($items, $first_item);
+        if ($file_menu == 'O') {
+            echo "Enter file path to open: ";
+            $file_path = get_input();
+            $new_items = open_file($file_path);
+            foreach ($new_items as $value) {
+                $first_item = array_shift($new_items);
+                array_push($items, $first_item);
+            }
+        
+        } elseif ($file_menu == 'S') {
+            echo "Enter file path to save: ";
+            $file_path = get_input();
+            //save_file($file_path, $items);
+
+            if (file_exists($file_path)) {
+                echo "The file: $file_path already exists. " . PHP_EOL . "Overwrite file? (Y)es or (N)o: ";
+                $overwrite = get_input(TRUE);
+                if ($overwrite == 'Y') {
+                    save_file($file_path, $items);
+                    echo "File: {$file_path} was saved" . PHP_EOL;
+                } elseif ($overwrite == 'N'){
+                    
+                }
+            } else {
+                save_file($file_path, $items);
+                echo "File: {$file_path} was saved" . PHP_EOL;
+            }
         }
-    
+            
     } elseif ($input == 'F') {
         array_shift($items);
     
@@ -98,6 +121,9 @@ do {
 echo "Goodbye!\n";
 
 exit(0);
+    
+            
+
 
 
         
